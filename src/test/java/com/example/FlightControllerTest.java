@@ -29,6 +29,17 @@ public class FlightControllerTest {
     @Autowired
     private MockMvc mvc;
 
+
+    @Test
+    public void getFlightTotalPriceWithSingleTicket() throws Exception {
+        MockHttpServletRequestBuilder request = post("/flights/tickets/total")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"tickets\":[{\"passenger\":{\"firstName\":\"Seb\",\"lastName\":\"Vet\"},\"price\":200.0}]}\t");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk());
+    }
+
     @Test
     public void getFlightTotalPrice() throws Exception{
 
