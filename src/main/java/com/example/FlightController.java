@@ -16,7 +16,7 @@ import java.util.List;
 public class FlightController {
 
     @PostMapping("/flights/tickets/total")
-    public Double calculateTotalPrice(@RequestBody String FlightJsonString) {
+    public Flights.Result calculateTotalPrice(@RequestBody String FlightJsonString) {
         Gson gson = new Gson();
         Double totalPrice=0.0;
         Flights flightJson = gson.fromJson(FlightJsonString, Flights.class);
@@ -29,6 +29,8 @@ public class FlightController {
                 totalPrice = totalPrice + currentTicketPrice;
             }
         }
-        return totalPrice;
+
+        Flights.Result result = new Flights.Result(totalPrice);
+        return result;
     }
 }

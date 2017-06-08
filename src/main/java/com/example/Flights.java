@@ -59,4 +59,17 @@ public class Flights {
 
     }
 
+    static class Result{
+
+      private final double result;
+
+        Result(double result) {
+            this.result = result;
+        }
+
+        public double getResult() {
+            return result;
+        }
+    }
+
 }

@@ -14,7 +14,9 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -82,7 +84,8 @@ public class FlightControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonString);
 
-        this.mvc.perform(request).andExpect(status().isOk());
+        this.mvc.perform(request).andExpect(status().isOk())
+                .andExpect(jsonPath("$.result", equalTo(900.0)));
     }
 
 
